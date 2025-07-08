@@ -167,4 +167,7 @@ playwright-report/
 
 # Misc
 *.orig
-*.rejnext-env.d.ts
+*.rej
+
+# Next.js generated files
+next-env.d.ts
