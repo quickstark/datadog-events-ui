@@ -167,4 +167,4 @@ playwright-report/
 
 # Misc
 *.orig
-*.rej
+*.rejnext-env.d.ts
