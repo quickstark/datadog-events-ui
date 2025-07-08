@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  datadog-events-ui:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      # Mount local data directory to persist scenarios and settings
+      - ./data:/app/data
+    environment:
+      - NODE_ENV=production
+      - STORAGE_DIR=/app/data
+      # Optional: Add your API keys as environment variables
+      # - DD_API_KEY=your_datadog_api_key
+      # - DD_APP_KEY=your_datadog_app_key
+      # - AWS_ACCESS_KEY_ID=your_aws_access_key
+      # - AWS_SECRET_ACCESS_KEY=your_aws_secret_key
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  # Alternative: Use a named volume for data persistence
+  datadog_data:
+    driver: local
